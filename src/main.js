@@ -1,6 +1,5 @@
 var canvas = document.getElementById('canvas');
 var restart = document.getElementById('restart');
-var retract = document.getElementById('retract');
 var context = canvas.getContext('2d');
 var gameOver = false;
 var pieceColor = true; // true for black(human), false for white(ai)
