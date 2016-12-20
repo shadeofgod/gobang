@@ -1,0 +1,24 @@
+#canvas {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    box-shadow: -2px -2px 2px #efefef, 4px 4px 4px #b9b9b9;
+}
+button {
+    width: 120px;
+    height: 50px;
+    font-size: 18px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 0;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+button:hover {
+    color: #fff;
+    background-color: #aaa;
+}
