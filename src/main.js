@@ -2,6 +2,7 @@ var canvas = document.getElementById('canvas');
 var restart = document.getElementById('restart');
 var context = canvas.getContext('2d');
 var gameOver = false;
+var oneStep = true;
 var pieceColor = true; // true for black(human), false for white(ai)
 
 // store every position on the board, 0 means nothing there, 1 means black, 2 means white
@@ -81,6 +82,7 @@ for (var i = 0; i < count; i++) {
 
 window.onload = function() {
     drawBoard();
+
     canvas.onclick = function(event) {
         if (gameOver) {
             return;
@@ -89,10 +91,15 @@ window.onload = function() {
             return;
         }
         humanStep(event);
-        if (!gameOver) {
-            pieceColor = !pieceColor;
-            aiStep();
+        if (oneStep) {
+            if (!gameOver) {
+                pieceColor = !pieceColor;
+                aiStep();
+            }
+        } else {
+            return;
         }
+
     }
 
     restart.onclick = function() {
@@ -107,7 +114,7 @@ function drawBoard() {
     context.rect(0, 0, 450, 450);
     context.fill();
 
-    context.strokeStyle = '#ccc';
+    context.strokeStyle = '#202020';
     for (var i = 0; i < 15; i++) {
         context.moveTo(15 + i * 30, 15);
         context.lineTo(15 + i * 30, 435);
@@ -146,6 +153,9 @@ function humanStep(event) {
         drawPiece(i, j, pieceColor);
         board[i][j] = 1;
         check(i, j, true);
+        oneStep = true;
+    } else {
+        oneStep = false;
     }
 }
 
@@ -237,6 +247,7 @@ function aiCalculating() {
         drawPiece(bestX, bestY, false);
         board[bestX][bestY] = 2;
         check(bestX, bestY, false);
+        oneStep = true;
     }
 
     if (!gameOver) {
