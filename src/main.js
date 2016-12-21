@@ -14,7 +14,7 @@ for (var i = 0; i < 15; i++) {
     }
 }
 
-// store all the ways to win the game
+// store all the matches to win the game
 var win = [];
 for (var i = 0; i < 15; i++) {
     win[i] = [];
@@ -64,7 +64,8 @@ for (var i = 0; i < 11; i++) {
 // console.log(count)
 // so now the total amount count === 572;
 
-// me wins
+
+// winning factor of human wins
 var humanWin = [];
 
 // ai wins
@@ -102,7 +103,11 @@ window.onload = function() {
 
 
 function drawBoard() {
-    context.strokeStyle = '#bfbfbf';
+    context.fillStyle = 'rgb(187, 101, 54)';
+    context.rect(0, 0, 450, 450);
+    context.fill();
+
+    context.strokeStyle = '#ccc';
     for (var i = 0; i < 15; i++) {
         context.moveTo(15 + i * 30, 15);
         context.lineTo(15 + i * 30, 435);
@@ -121,17 +126,17 @@ function drawPiece(i, j, pieceColor) {
     context.beginPath();
     context.arc(x, y, 13, 0, 2 * Math.PI);
     context.closePath();
+
     var gradient = context.createRadialGradient(x + 3, y - 3, 13, x + 3, y - 3, 0);
     if (pieceColor) {
         gradient.addColorStop(0, '#0a0a0a');
         gradient.addColorStop(1, '#666666');
     } else {
-        gradient.addColorStop(0, '#d1d1d1');
+        gradient.addColorStop(0, 'rgb(174, 175, 175)');
         gradient.addColorStop(1, '#f9f9f9');
     }
     context.fillStyle = gradient;
     context.fill();
-
 }
 
 function humanStep(event) {
@@ -145,11 +150,10 @@ function humanStep(event) {
 }
 
 function aiStep() {
-    // I added a bit delay time for better experience
-    var time = parseInt(Math.random() * 2000);
+    // I added a little bit delay time for better experience
     setTimeout(function(){
         aiCalculating();
-    }, time)
+    }, 500)
 }
 
 function aiCalculating() {
@@ -167,7 +171,7 @@ function aiCalculating() {
         }
     }
 
-    // 遍历每一个位置，分别计算玩家和ai下子在此处的优势权重来决定进攻还是放守
+    // 遍历每一个位置，分别计算玩家和ai下子在此位置处的优势权重来决定进攻还是放守
     for (var i = 0; i < 15; i++) {
         for (var j = 0; j < 15; j++) {
             if (board[i][j] === 0) {
