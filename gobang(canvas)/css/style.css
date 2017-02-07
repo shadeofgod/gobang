@@ -1,0 +1,29 @@
+#cvs {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    box-shadow: -2px -2px 2px #efefef, 4px 4px 4px #b9b9b9;
+}
+div {
+    width: 450px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+button {
+    display: inline-block;
+    width: 120px;
+    height: 50px;
+    font-size: 18px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    cursor: pointer;
+}
+h1 {
+    margin: 10px auto;
+    width: 450px;
+    text-align: center;
+}
