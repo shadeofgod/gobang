@@ -22,7 +22,7 @@ for (let i = 0; i < 15; i++) {
 
 function isOver(i, j, pieceColor) {
     if (board[i][j] === 0) return false;
-    // 右
+    // 右方
     if (j < 14 && board[i][j + 1] == board[i][j]) {
         for (let k = 0; k < 11; k++) {
             if (
@@ -68,6 +68,7 @@ function isOver(i, j, pieceColor) {
         }
     }
 
+    // 上方
     if (i > 0 && board[i - 1][j] == board[i][j]) {
         for (let k = 0; k < 11; k++) {
             if (
@@ -81,8 +82,6 @@ function isOver(i, j, pieceColor) {
             }
         }
     }
-
-
 
     //右下
     if (i < 14 && j < 14 && board[i + 1][j + 1] == board[i][j]) {
