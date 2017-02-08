@@ -86,7 +86,7 @@ function isOver(i, j, pieceColor) {
 
 
     //右下
-    if (i < 14 && j < 15 && board[i + 1][j + 1] == board[i][j]) {
+    if (i < 14 && j < 14 && board[i + 1][j + 1] == board[i][j]) {
         for (let k = -7; k < 7; k++) {
             if (i + k < 11 && j + k < 11 && i + k >= 0 && j + k >= 0) {
                 if (
