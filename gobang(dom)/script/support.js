@@ -22,8 +22,8 @@ for (let i = 0; i < 15; i++) {
 
 function isOver(i, j, pieceColor) {
     if (board[i][j] === 0) return false;
-    // 水平方向
-    if (board[i][j + 1] == board[i][j] || board[i][j - 1] == board[i][j]) {
+    // 右方
+    if (j < 14 && board[i][j + 1] == board[i][j]) {
         for (let k = 0; k < 11; k++) {
             if (
                 board[i][k] == board[i][j] &&
@@ -36,8 +36,25 @@ function isOver(i, j, pieceColor) {
             }
         }
     }
-    // 垂直方向
-    if (board[i + 1][j] == board[i][j] || board[i - 1][j] == board[i][j]) {
+
+    // 左方
+    if (j > 0 && board[i][j - 1] == board[i][j]) {
+        for (let k = 0; k < 11; k++) {
+            if (
+                board[i][k] == board[i][j] &&
+                board[i][k + 1] == board[i][j] &&
+                board[i][k + 2] == board[i][j] &&
+                board[i][k + 3] == board[i][j] &&
+                board[i][k + 4] == board[i][j]
+            ) {
+                gameOver = true;
+            }
+        }
+    }
+
+
+    // 下方
+    if (i < 14 && board[i + 1][j] == board[i][j]) {
         for (let k = 0; k < 11; k++) {
             if (
                 board[k][j] == board[i][j] &&
@@ -51,8 +68,25 @@ function isOver(i, j, pieceColor) {
         }
     }
 
-    //斜线方向
-    if (board[i + 1][j + 1] == board[i][j] || board[i - 1][j - 1] == board[i][j]) {
+    // 上方
+    if (i > 0 && board[i - 1][j] == board[i][j]) {
+        for (let k = 0; k < 11; k++) {
+            if (
+                board[k][j] == board[i][j] &&
+                board[k + 1][j] == board[i][j] &&
+                board[k + 2][j] == board[i][j] &&
+                board[k + 3][j] == board[i][j] &&
+                board[k + 4][j] == board[i][j]
+            ) {
+                gameOver = true;
+            }
+        }
+    }
+
+
+
+    //右下
+    if (i < 14 && j < 15 && board[i + 1][j + 1] == board[i][j]) {
         for (let k = -7; k < 7; k++) {
             if (i + k < 11 && j + k < 11 && i + k >= 0 && j + k >= 0) {
                 if (
@@ -68,8 +102,42 @@ function isOver(i, j, pieceColor) {
         }
     }
 
-    //反斜线方向
-    if (board[i + 1][j - 1] == board[i][j] || board[i - 1][j + 1] == board[i][j]) {
+    // 左上
+    if (i > 0 && j > 0 && board[i - 1][j - 1] == board[i][j]) {
+        for (let k = -7; k < 7; k++) {
+            if (i + k < 11 && j + k < 11 && i + k >= 0 && j + k >= 0) {
+                if (
+                    board[i + k][j + k] == board[i][j] &&
+                    board[i + k + 1][j + k + 1] == board[i][j] &&
+                    board[i + k + 2][j + k + 2] == board[i][j] &&
+                    board[i + k + 3][j + k + 3] == board[i][j] &&
+                    board[i + k + 4][j + k + 4] == board[i][j]
+                ) {
+                    gameOver = true;
+                }
+            }
+        }
+    }
+
+    // 左下
+    if (i < 14 && j > 0 && board[i + 1][j - 1] == board[i][j]) {
+        for (let k = -7; k < 7; k++) {
+            if (i + k < 11 && j + k < 11 && i + k >= 0 && j + k >= 0) {
+                if (
+                    board[i + k][j - k] == board[i][j] &&
+                    board[i + k + 1][j - k - 1] == board[i][j] &&
+                    board[i + k + 2][j - k - 2] == board[i][j] &&
+                    board[i + k + 3][j - k - 3] == board[i][j] &&
+                    board[i + k + 4][j - k - 4] == board[i][j]
+                ) {
+                    gameOver = true;
+                }
+            }
+        }
+    }
+
+    // 右下
+    if (i > 0 && j < 14 && board[i - 1][j + 1] == board[i][j]) {
         for (let k = -7; k < 7; k++) {
             if (i + k < 11 && j + k < 11 && i + k >= 0 && j + k >= 0) {
                 if (
